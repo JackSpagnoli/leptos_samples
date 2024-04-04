@@ -8,6 +8,7 @@ jobs:
     uses: ./.github/workflows/quality_checks.yml
     with:
       BRANCH_NAME: main
+      BUILD: false
 
   build:
     needs: quality_checks
@@ -52,7 +53,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          pattern: ${{ github.sha }}-
+          pattern: ${{ github.sha }}-*
           path: ./builds
 
       - name: Zip artifacts

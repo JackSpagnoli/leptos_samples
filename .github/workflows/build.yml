@@ -1,4 +1,4 @@
-name: Build and store Site
+name: Build all sites
 
 on:
   workflow_call:
