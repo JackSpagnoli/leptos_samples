@@ -1,0 +1,20 @@
+name: PR Title Check
+
+on:
+  workflow_call:
+
+jobs:
+  pr_title_format_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR Title is Prefixed with Change Type
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if [[ "$PR_TITLE" =~ ^(Fix|Update|New|Breaking|Docs|Build|Upgrade|Chore):.*$ ]]; then
+            echo "PR title is prefixed with change type."
+          else
+            echo "PR title is not prefixed with change type."
+            echo "Please prefix your PR title with a change type (Fix, Update, New, Breaking, Docs, Build, Upgrade, Chore)."
+            exit 1
+          fi
