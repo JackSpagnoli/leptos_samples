@@ -1,0 +1,16 @@
+name: Build all sites
+
+on:
+  workflow_call:
+    inputs:
+      UPLOAD:
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-site.yml
+    with:
+      DIRECTORY: draggable_boxes
+      UPLOAD: ${{ inputs.UPLOAD }}
