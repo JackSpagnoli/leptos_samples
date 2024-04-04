@@ -1,6 +1,6 @@
 install: install-hooks install-rust-toolchains install-trunk install-cargo-dev install-node
 
-install-build: install-rust-toolchains install-trunk install-node
+install-build: install-rust-toolchains install-node
 
 install-rust-toolchains:
 	rustup toolchain install nightly
@@ -11,7 +11,7 @@ install-rust-toolchains:
 install-trunk:
 	cargo install trunk
 
-install-cargo:
+install-cargo-dev:
 	cargo install leptosfmt
 
 install-node:

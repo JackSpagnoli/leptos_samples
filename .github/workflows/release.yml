@@ -46,7 +46,13 @@ jobs:
 
       - name: make install
         run: |
-          make install
+          make install-build
+
+      - name: Install cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
+
+      - name: install trunk
+        run: cargo binstall trunk
 
       - name: build draggable_boxes
         run: |
