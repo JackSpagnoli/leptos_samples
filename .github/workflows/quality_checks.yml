@@ -39,6 +39,9 @@ jobs:
         env:
           PYTHON_CONFIGURE_OPTS: --enable-shared
 
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
       - name: make install
         run: |
           make install
