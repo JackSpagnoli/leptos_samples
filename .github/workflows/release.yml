@@ -52,7 +52,7 @@ jobs:
         uses: cargo-bins/cargo-binstall@main
 
       - name: install trunk
-        run: cargo binstall trunk
+        run: cargo binstall -y trunk
 
       - name: build draggable_boxes
         run: |
