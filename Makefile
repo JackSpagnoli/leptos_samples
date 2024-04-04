@@ -1,4 +1,4 @@
-install: install-hooks install-rust-toolchains install-leptos install-tailwind
+install: install-hooks install-rust-toolchains install-leptos install-node
 
 install-rust-toolchains:
 	rustup toolchain install nightly
@@ -8,7 +8,7 @@ install-rust-toolchains:
 install-leptos:
 	cargo install leptosfmt
 
-install-tailwind:
+install-node:
 	npm install
 
 install-hooks:

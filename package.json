@@ -1,4 +1,8 @@
 {
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JackSpagnoli/leptos_samples.git"
+  },
   "devDependencies": {
     "tailwindcss": "^3.4.1",
     "semantic-release": "^23.0.6",
