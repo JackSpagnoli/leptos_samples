@@ -9,8 +9,14 @@ jobs:
     with:
       BRANCH_NAME: main
 
-  release:
+  build:
     needs: quality_checks
+    uses: ./.github/workflows/build.yml
+    with:
+      UPLOAD: true
+
+  release:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,7 +25,6 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      # using git commit sha for version of action to ensure we have stable version
       - name: Install asdf
         uses: asdf-vm/actions/setup@05e0d2ed97b598bfce82fd30daf324ae0c4570e6
         with:
@@ -41,25 +46,20 @@ jobs:
         env:
           PYTHON_CONFIGURE_OPTS: --enable-shared
 
-      - name: Cache cargo
-        uses: Swatinem/rust-cache@v2
+      - name: Install semantic-release
+        run: make install-node
 
-      - name: make install
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ github.sha }}-
+          path: ./builds
+
+      - name: Zip artifacts
         run: |
-          make install-build
+          ls
+          zip -r builds.zip builds
 
-      - name: Install cargo-binstall
-        uses: cargo-bins/cargo-binstall@main
-
-      - name: install trunk
-        run: cargo binstall -y trunk
-
-      - name: build draggable_boxes
-        run: |
-          cd draggable_boxes
-          trunk build --release
-
-      # use semantic-release to determine the next version number
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

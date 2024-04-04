@@ -66,8 +66,8 @@
             "label": "CHANGELOG.md"
           },
           {
-            "path": "draggable_boxes/dist",
-            "label": "draggable_boxes"
+            "path": "builds.zip",
+            "label": "sites.zip"
           }
         ],
         "successComment": false,
