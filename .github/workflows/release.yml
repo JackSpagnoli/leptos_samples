@@ -58,7 +58,12 @@ jobs:
 
       - name: Zip artifacts
         run: |
-          ls
+          for dir in ./builds/*; do
+            mv $dir ./builds/$(basename $dir | cut -d'-' -f2)
+          done
+
+          ls ./builds
+
           zip -r builds.zip builds
 
       - name: Release
