@@ -1,12 +1,13 @@
-install: install-hooks install-rust-toolchains install-leptos install-node
+install: install-hooks install-rust-toolchains install-cargo install-node
 
 install-rust-toolchains:
 	rustup toolchain install nightly
 	rustup override set nightly
 	rustup component add rustfmt --toolchain nightly-x86_64-unknown-linux-gnu
 
-install-leptos:
+install-cargo:
 	cargo install leptosfmt
+	cargo install trunk
 
 install-node:
 	npm install
