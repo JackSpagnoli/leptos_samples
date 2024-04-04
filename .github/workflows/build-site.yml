@@ -15,6 +15,12 @@ jobs:
   build-site:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.BRANCH_NAME }}
+          fetch-depth: 0
+
       - name: Install asdf
         uses: asdf-vm/actions/setup@v3
         with:
