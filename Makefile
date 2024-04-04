@@ -1,4 +1,6 @@
-install: install-hooks install-rust-toolchains install-cargo install-node
+install: install-hooks install-rust-toolchains install-trunk install-cargo-dev install-node
+
+install-build: install-rust-toolchains install-trunk install-node
 
 install-rust-toolchains:
 	rustup toolchain install nightly
@@ -6,9 +8,11 @@ install-rust-toolchains:
 	rustup target add wasm32-unknown-unknown
 	rustup component add rustfmt --toolchain nightly-x86_64-unknown-linux-gnu
 
+install-trunk:
+	cargo install trunk
+
 install-cargo:
 	cargo install leptosfmt
-	cargo install trunk
 
 install-node:
 	npm install
