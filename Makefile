@@ -6,7 +6,6 @@ install-rust-toolchains:
 	rustup component add rustfmt --toolchain nightly-x86_64-unknown-linux-gnu
 
 install-leptos:
-	cargo add leptos --features=csr,nightly
 	cargo install leptosfmt
 
 install-tailwind:
