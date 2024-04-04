@@ -1,14 +1,18 @@
-name: Quality Checks
+name: Build and store Site
 
 on:
   workflow_call:
     inputs:
-      BRANCH_NAME:
+      DIRECTORY:
         type: string
         required: true
+      UPLOAD:
+        type: boolean
+        required: false
+        default: false
 
 jobs:
-  quality_checks:
+  build-site:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -57,7 +61,14 @@ jobs:
       - name: install trunk
         run: cargo binstall -y trunk
 
-  build:
-    uses: ./.github/workflows/build.yml
-    with:
-      UPLOAD: false
+      - name: build ${{ inputs.DIRECTORY }}
+        run: |
+          cd ${{ inputs.DIRECTORY }}
+          trunk build --release
+
+      - name: Upload dist directory
+        if: ${{ inputs.UPLOAD }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.sha }}-${{ inputs.DIRECTORY }}
+          path: ${{ inputs.DIRECTORY }}/dist
