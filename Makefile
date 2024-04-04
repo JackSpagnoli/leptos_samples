@@ -3,6 +3,7 @@ install: install-hooks install-rust-toolchains install-cargo install-node
 install-rust-toolchains:
 	rustup toolchain install nightly
 	rustup override set nightly
+	rustup target add wasm32-unknown-unknown
 	rustup component add rustfmt --toolchain nightly-x86_64-unknown-linux-gnu
 
 install-cargo:
