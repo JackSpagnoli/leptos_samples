@@ -1,0 +1,100 @@
+{
+  "name": "Rust",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": {}
+  },
+  "mounts": [
+    {
+      "source": "devcontainer-cargo-cache-${devcontainerId}",
+      "target": "/usr/local/cargo",
+      "type": "volume"
+    },
+    "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind",
+    "source=${env:HOME}${env:USERPROFILE}/.gnupg,target=/home/vscode/.gnupg,type=bind"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.vscode-yaml",
+        "vadimcn.vscode-lldb",
+        "serayuzgur.crates",
+        "tamasfe.even-better-toml",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "eamodio.gitlens",
+        "mutantdino.resourcemonitor",
+        "rust-lang.rust-analyzer",
+        "trunk.io",
+        "DavidAnson.vscode-markdownlint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.hexeditor",
+        "streetsidesoftware.code-spell-checker",
+        "ms-azuretools.vscode-docker",
+        "jbockle.jbockle-format-files",
+        "codezombiech.gitignore"
+      ],
+      "settings": {
+        "editor.formatOnPaste": false,
+        "editor.formatOnType": false,
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "[rust]": {
+          "editor.defaultFormatter": "rust-lang.rust-analyzer"
+        },
+        "[toml]": {
+          "editor.defaultFormatter": "tamasfe.even-better-toml"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[yaml]": {
+          "editor.defaultFormatter": "redhat.vscode-yaml"
+        },
+        "yaml.format.enable": true,
+        "[markdown]": {
+          "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+        },
+        "[dockerfile]": {
+          "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+        },
+        "files.associations": {
+          "*.md": "markdown",
+          "*.json": "json"
+        },
+        "formatFiles.useGitIgnore": true,
+        "formatFiles.excludedFolders": [
+          "node_modules",
+          ".vscode",
+          ".git",
+          "dist",
+          ".chrome",
+          "target",
+          ".trunk"
+        ],
+        "rust-analyzer.rustfmt.overrideCommand": [
+          "leptosfmt",
+          "--stdin",
+          "--rustfmt"
+        ],
+        "emmet.includeLanguages": {
+          "rust": "html",
+          "*.rs": "html"
+        },
+        "tailwindCSS.includeLanguages": {
+          "rust": "html",
+          "*.rs": "html"
+        },
+        "editor.quickSuggestions": {
+          "other": "on",
+          "comments": "on",
+          "strings": true
+        },
+        "css.validate": false,
+        "cSpell.words": ["leptos", "fhir"]
+      }
+    }
+  },
+  "postCreateCommand": "make install;"
+}
