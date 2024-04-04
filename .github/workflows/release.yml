@@ -45,6 +45,11 @@ jobs:
         run: |
           make install
 
+      - name: build draggable_boxes
+        run: |
+          cd draggable_boxes
+          trunk build --release
+
       # use semantic-release to determine the next version number
       - name: Release
         env:

@@ -64,6 +64,10 @@
           {
             "path": "CHANGELOG.md",
             "label": "CHANGELOG.md"
+          },
+          {
+            "path": "draggable_boxes/dist",
+            "label": "draggable_boxes"
           }
         ],
         "successComment": false,

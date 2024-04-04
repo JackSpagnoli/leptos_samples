@@ -42,3 +42,8 @@ jobs:
       - name: make install
         run: |
           make install
+
+      - name: build draggable_boxes
+        run: |
+          cd draggable_boxes
+          trunk build --release
