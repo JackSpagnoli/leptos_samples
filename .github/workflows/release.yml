@@ -62,9 +62,7 @@ jobs:
             mv $dir ./builds/$(basename $dir | cut -d'-' -f2)
           done
 
-          ls ./builds
-
-          zip -r builds.zip builds
+          cd builds && zip -r ../builds.zip .
 
       - name: Release
         env:
