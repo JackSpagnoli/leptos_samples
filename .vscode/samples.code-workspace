@@ -3,6 +3,9 @@
         {
             "name": "root",
             "path": ".."
+        },
+        {
+            "path": "../draggable_boxes"
         }
     ],
 }

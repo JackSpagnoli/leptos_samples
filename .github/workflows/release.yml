@@ -41,9 +41,23 @@ jobs:
         env:
           PYTHON_CONFIGURE_OPTS: --enable-shared
 
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
       - name: make install
         run: |
-          make install
+          make install-build
+
+      - name: Install cargo-binstall
+        uses: cargo-bins/cargo-binstall@main
+
+      - name: install trunk
+        run: cargo binstall -y trunk
+
+      - name: build draggable_boxes
+        run: |
+          cd draggable_boxes
+          trunk build --release
 
       # use semantic-release to determine the next version number
       - name: Release

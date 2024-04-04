@@ -1,0 +1,19 @@
+[package]
+name = "draggable_list"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+# Set to true for wasm build
+lto = "off"
+incremental = true
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+leptos = { version = "0.5.7", features = ["csr", "nightly"] }
+leptos-use = "0.9"
+console_error_panic_hook = "0.1.7"
+log = "0.4.21"
+console_log = { version = "1.0.0", features = ["color"] }
